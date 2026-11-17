@@ -1,0 +1,43 @@
+{
+  "info": {
+    "name": "Universal Chatbot - Project API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "project_code",
+      "value": "demo"
+    },
+    {
+      "key": "project_key",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Ask project",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "{{project_key}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{base_url}}/api/chat/{{project_code}}",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"session_id\": \"demo-1\", \"question\": \"count products\"}"
+        }
+      }
+    }
+  ]
+}

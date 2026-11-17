@@ -1,0 +1,189 @@
+{
+  "project_code": "JOB_PORTAL",
+  "modules": [
+    "resume"
+  ],
+  "language_hints": [
+    "en"
+  ],
+  "thresholds": {
+    "intent": 0.4,
+    "entity_fuzzy": 0.85
+  },
+  "normalization_lexicon": {
+    "dev": "developer",
+    "eng": "engineer",
+    "ml": "machine learning",
+    "exp": "experience"
+  },
+  "entity_types": [
+    {
+      "name": "JobRole",
+      "kind": "gazetteer",
+      "priority": 1,
+      "values": [
+        {
+          "canonical": "Software Engineer",
+          "aliases": [
+            "software engineer",
+            "developer",
+            "software dev",
+            "programmer",
+            "coder",
+            "swe"
+          ]
+        },
+        {
+          "canonical": "Data Scientist",
+          "aliases": [
+            "data scientist",
+            "machine learning engineer",
+            "ml engineer",
+            "ai researcher"
+          ]
+        },
+        {
+          "canonical": "Frontend Developer",
+          "aliases": [
+            "frontend developer",
+            "react developer",
+            "ui engineer",
+            "web designer"
+          ]
+        },
+        {
+          "canonical": "Backend Developer",
+          "aliases": [
+            "backend developer",
+            "node developer",
+            "python backend",
+            "api engineer"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ApplicationStatus",
+      "kind": "gazetteer",
+      "priority": 1,
+      "values": [
+        {
+          "canonical": "shortlisted",
+          "aliases": [
+            "shortlisted",
+            "selected",
+            "cleared round"
+          ]
+        },
+        {
+          "canonical": "under_review",
+          "aliases": [
+            "under review",
+            "reviewing",
+            "pending review",
+            "screening"
+          ]
+        },
+        {
+          "canonical": "rejected",
+          "aliases": [
+            "rejected",
+            "declined",
+            "not selected"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "candidate_id",
+      "kind": "pattern",
+      "regex": "\\b(?:CAND[-\\s]?[0-9]{5,10}|APP[-\\s]?[0-9]{5,10})\\b",
+      "normalize_rule": [
+        "remove_spaces",
+        "uppercase"
+      ]
+    },
+    {
+      "name": "number",
+      "kind": "builtin",
+      "builtin": "number"
+    },
+    {
+      "name": "days",
+      "kind": "builtin",
+      "builtin": "days"
+    },
+    {
+      "name": "person",
+      "kind": "builtin",
+      "builtin": "person"
+    },
+    {
+      "name": "id",
+      "kind": "builtin",
+      "builtin": "id"
+    }
+  ],
+  "intents": [
+    {
+      "name": "Greeting",
+      "description": "Welcome and hello in job portal",
+      "examples": [
+        "hello",
+        "hi",
+        "hey there",
+        "good morning",
+        "greetings",
+        "hi recruiter",
+        "hello hr",
+        "hey job bot"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "SearchCandidates",
+      "description": "Search and screen candidates by skills and title",
+      "examples": [
+        "find candidates with python and react",
+        "search resumes with machine learning",
+        "find senior software engineer with 5 years experience",
+        "look for python developer candidates",
+        "show applicants skilled in node.js and mongodb",
+        "filter candidates for backend developer role",
+        "who has experience in aws and docker",
+        "search candidate profiles with data science skills"
+      ],
+      "entities_expected": [
+        "JobRole"
+      ]
+    },
+    {
+      "name": "CandidateStatusLookup",
+      "description": "Check candidate application status",
+      "examples": [
+        "check application status for CAND-12345",
+        "what is status of candidate APP-99887",
+        "lookup applicant CAND-55443",
+        "is candidate CAND-77665 shortlisted",
+        "track application for CAND-11223",
+        "status of candidate profile CAND-90812"
+      ],
+      "entities_expected": [
+        "candidate_id"
+      ]
+    },
+    {
+      "name": "ScreenResume",
+      "description": "Analyze and screen resume against job requirement",
+      "examples": [
+        "screen this candidate resume",
+        "analyze candidate cv for software engineer",
+        "match resume with job description",
+        "evaluate resume qualification and score",
+        "run resume screening analysis",
+        "score this applicant profile"
+      ],
+      "entities_expected": []
+    }
+  ]
+}

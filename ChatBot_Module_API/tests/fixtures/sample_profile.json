@@ -1,0 +1,737 @@
+{
+  "project_code": "PROTECT",
+  "modules": [],
+  "language_hints": [
+    "en",
+    "ta-Latn"
+  ],
+  "thresholds": {
+    "intent": 0.4,
+    "entity_fuzzy": 0.85
+  },
+  "normalization_lexicon": {
+    "reprt": "report",
+    "overal": "overall",
+    "polcy": "policy",
+    "insurane": "insurance",
+    "vechicle": "vehicle",
+    "vechile": "vehicle",
+    "detals": "details",
+    "staus": "status",
+    "mudinjathu": "lapsed",
+    "theerthathu": "lapsed",
+    "kannukutti": "cattle",
+    "maadu": "cattle",
+    "vandi": "vehicle"
+  },
+  "entity_types": [
+    {
+      "name": "Category",
+      "kind": "gazetteer",
+      "priority": 1,
+      "values": [
+        {
+          "canonical": "Cattle",
+          "aliases": [
+            "cattle",
+            "cow",
+            "cows",
+            "buffalo",
+            "bull",
+            "maadu",
+            "kannukutti",
+            "livestock"
+          ]
+        },
+        {
+          "canonical": "Vehicle",
+          "aliases": [
+            "vehicle",
+            "motor",
+            "car",
+            "bike",
+            "vandi",
+            "automobile",
+            "scooter",
+            "lorry",
+            "truck",
+            "two wheeler",
+            "four wheeler"
+          ]
+        },
+        {
+          "canonical": "Personal",
+          "aliases": [
+            "personal",
+            "personal accident",
+            "individual",
+            "pa policy"
+          ]
+        },
+        {
+          "canonical": "Health",
+          "aliases": [
+            "health",
+            "medical",
+            "mediclaim",
+            "hospitalization",
+            "maruthuvam"
+          ]
+        },
+        {
+          "canonical": "Fire",
+          "aliases": [
+            "fire",
+            "flame",
+            "fire insurance",
+            "thee"
+          ]
+        },
+        {
+          "canonical": "LIC",
+          "aliases": [
+            "lic",
+            "life insurance",
+            "jeevan",
+            "lic policy"
+          ]
+        },
+        {
+          "canonical": "Building",
+          "aliases": [
+            "building",
+            "property",
+            "kattidam",
+            "house",
+            "home"
+          ]
+        },
+        {
+          "canonical": "Machinery",
+          "aliases": [
+            "machinery",
+            "machine",
+            "equipment",
+            "breakdown",
+            "yenthiram"
+          ]
+        },
+        {
+          "canonical": "Stock",
+          "aliases": [
+            "stock",
+            "inventory",
+            "goods",
+            "godown"
+          ]
+        },
+        {
+          "canonical": "Locker",
+          "aliases": [
+            "locker",
+            "bank locker",
+            "safe deposit"
+          ]
+        },
+        {
+          "canonical": "Marine",
+          "aliases": [
+            "marine",
+            "cargo",
+            "shipping",
+            "transit",
+            "kappal"
+          ]
+        },
+        {
+          "canonical": "GPA",
+          "aliases": [
+            "gpa",
+            "group personal accident",
+            "group policy"
+          ]
+        },
+        {
+          "canonical": "Money",
+          "aliases": [
+            "money",
+            "cash",
+            "money in transit",
+            "cash in safe",
+            "panam"
+          ]
+        },
+        {
+          "canonical": "WindMill",
+          "aliases": [
+            "windmill",
+            "wind mill",
+            "wind turbine",
+            "kaatralai"
+          ]
+        },
+        {
+          "canonical": "Others",
+          "aliases": [
+            "others",
+            "other",
+            "general",
+            "miscellaneous"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "kind": "gazetteer",
+      "priority": 1,
+      "values": [
+        {
+          "canonical": "active",
+          "aliases": [
+            "active",
+            "running",
+            "live",
+            "valid",
+            "nadakuthu",
+            "irukku",
+            "current",
+            "in force"
+          ]
+        },
+        {
+          "canonical": "expiring",
+          "aliases": [
+            "expiring",
+            "due",
+            "soon",
+            "expiring soon",
+            "mudiyapoguthu",
+            "mudiyum",
+            "renewal due"
+          ]
+        },
+        {
+          "canonical": "lapsed",
+          "aliases": [
+            "lapsed",
+            "expired",
+            "mudinjathu",
+            "theerthathu",
+            "overdue",
+            "inactive",
+            "cancelled",
+            "canceled",
+            "close aachu",
+            "terminated",
+            "deadline crossed"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "vehicle_number",
+      "kind": "pattern",
+      "regex": "\\b[A-Z]{2}[\\s-]?[0-9]{1,2}[\\s-]?[A-Z]{1,3}[\\s-]?[0-9]{1,4}\\b",
+      "normalize_rule": [
+        "remove_spaces",
+        "remove_hyphens",
+        "uppercase"
+      ]
+    },
+    {
+      "name": "policy_number",
+      "kind": "pattern",
+      "regex": "\\b(?:POL[-\\s]?[A-Z0-9]{6,16}|\\d{10,16})\\b",
+      "normalize_rule": [
+        "remove_spaces",
+        "uppercase"
+      ]
+    },
+    {
+      "name": "number",
+      "kind": "builtin",
+      "builtin": "number"
+    },
+    {
+      "name": "days",
+      "kind": "builtin",
+      "builtin": "days"
+    },
+    {
+      "name": "date_range",
+      "kind": "builtin",
+      "builtin": "date_range"
+    },
+    {
+      "name": "id",
+      "kind": "builtin",
+      "builtin": "id"
+    },
+    {
+      "name": "person",
+      "kind": "builtin",
+      "builtin": "person"
+    },
+    {
+      "name": "org",
+      "kind": "builtin",
+      "builtin": "org"
+    },
+    {
+      "name": "top_n",
+      "kind": "builtin",
+      "builtin": "top_n"
+    }
+  ],
+  "intents": [
+    {
+      "name": "Greeting",
+      "description": "Friendly greetings, welcome messages, and initial bot contact",
+      "examples": [
+        "hi",
+        "hello",
+        "hey",
+        "hello there",
+        "hi bot",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "vanakkam",
+        "namaste",
+        "hey there",
+        "howdy",
+        "greetings",
+        "hi assistant",
+        "hello chatbot",
+        "hi team",
+        "vanakkam bot"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "Help",
+      "description": "User asking for help, available features, commands, or assistance",
+      "examples": [
+        "help me",
+        "what can you do",
+        "show me available options",
+        "how do i use this chatbot",
+        "guide me through features",
+        "what queries can i ask",
+        "assistance required",
+        "help please",
+        "commands list",
+        "enakkum help venum",
+        "can you assist me",
+        "give me instructions",
+        "what are your capabilities",
+        "need help with protect portal",
+        "show help menu",
+        "support details"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "OverallReport",
+      "description": "Comprehensive overview and overall summary of all policies and statistics",
+      "examples": [
+        "overall report",
+        "overal reprt",
+        "give me the overall report",
+        "show overall summary report",
+        "total policies report",
+        "complete policy overview",
+        "full insurance summary",
+        "all policies overall report",
+        "overall stats",
+        "policy overall count and report",
+        "moththa report kudu",
+        "overall data show panna",
+        "display overall report",
+        "fetch overall report",
+        "generate overall report",
+        "full portfolio overall report"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "CategoryDetail",
+      "description": "Details and metrics for a specific insurance category",
+      "examples": [
+        "cattle insurance details",
+        "show me cattle policy details",
+        "vehicle policy category details",
+        "health insurance summary",
+        "fire policy information",
+        "building insurance report",
+        "machinery breakdown details",
+        "stock inventory insurance",
+        "marine insurance policies",
+        "personal accident details",
+        "gpa policy details",
+        "windmill insurance status",
+        "locker insurance details",
+        "lic policy category info",
+        "others insurance list",
+        "money policy details"
+      ],
+      "entities_expected": [
+        "Category"
+      ]
+    },
+    {
+      "name": "PolicyStatusList",
+      "description": "List policies filtered by their status (active, expiring, lapsed)",
+      "examples": [
+        "show me vehicle active",
+        "list active policies",
+        "cattle expired policies",
+        "expired policies list",
+        "mudinjathu policy list kudu",
+        "active policies report",
+        "policies expiring in next 15 days",
+        "lapsed policy list",
+        "show live policies",
+        "overdue policies display",
+        "expiring policies this month",
+        "which policies are active",
+        "find lapsed vehicle policies",
+        "give me cattle lapsed policies",
+        "running insurance policies list",
+        "all active vehicle policies"
+      ],
+      "entities_expected": [
+        "Status"
+      ]
+    },
+    {
+      "name": "PolicyLookup",
+      "description": "Lookup and search a specific policy by policy number or ID",
+      "examples": [
+        "lookup policy POL-12345678",
+        "search policy 123456789012",
+        "find policy number POL-99887766",
+        "check policy 987654321012",
+        "where is policy POL-44556677",
+        "get policy info for POL-11223344",
+        "policy lookup 889977665544",
+        "fetch details for policy POL-77889900",
+        "show policy record 556677889900",
+        "status of policy number POL-33445566",
+        "find my policy 123456789099",
+        "view policy POL-22334455",
+        "check record for POL-55667788",
+        "track policy number 667788990011",
+        "policy search POL-88990011",
+        "lookup 102938475612"
+      ],
+      "entities_expected": [
+        "policy_number"
+      ]
+    },
+    {
+      "name": "VehicleLookup",
+      "description": "Search and lookup insurance details by vehicle registration number",
+      "examples": [
+        "lookup vehicle TN 33 AX 5799",
+        "search vehicle number TN 38 CJ 1234",
+        "find insurance for TN-09-AB-1234",
+        "check car details TN 45 AB 6789",
+        "bike number KL 07 CD 4567 insurance",
+        "vandi details for TN 33 AX 5799",
+        "vehicle lookup KA 01 MJ 9988",
+        "status of vehicle MH 12 AB 9876",
+        "find vehicle record DL 01 A 1111",
+        "insurance status for vehicle TN 66 K 4321",
+        "search vehicle TN 37 XY 8899",
+        "track vehicle number TN 33 AX 5799",
+        "lookup motor insurance for TN 02 BC 4455",
+        "check insurance on vehicle TN 39 Q 7766",
+        "car insurance TN 33 AX 5799",
+        "vehicle search TN 01 AA 0001"
+      ],
+      "entities_expected": [
+        "vehicle_number"
+      ]
+    },
+    {
+      "name": "LastPolicyEntry",
+      "description": "Retrieve recent or last added policy entries in the system",
+      "examples": [
+        "last policy entry",
+        "show the latest policy added",
+        "most recent policy record",
+        "recently entered policy details",
+        "what was the last policy entered",
+        "kadaisi policy entry kaattu",
+        "fetch last policy entry",
+        "latest insurance entry",
+        "last 5 policy entries",
+        "recently updated policy",
+        "newest policy in system",
+        "who was the last policy holder",
+        "show last policy created",
+        "get latest policy record",
+        "display recent policy entry",
+        "view last policy added"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "PremiumReport",
+      "description": "Report and breakdown of insurance premiums paid, pending, or total",
+      "examples": [
+        "premium report",
+        "show total premium collected",
+        "premium summary report",
+        "how much premium was paid",
+        "breakdown of insurance premium",
+        "premium report for this year",
+        "average premium by category",
+        "highest premium policy",
+        "total premium amount report",
+        "moththa premium evvalavu",
+        "premium collection report",
+        "monthly premium report",
+        "premium details for cattle",
+        "vehicle policy premium summary",
+        "display premium report",
+        "fetch premium analytics"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "SumInsuredReport",
+      "description": "Report of sum insured across policies, assets, and categories",
+      "examples": [
+        "sum insured report",
+        "total sum insured overview",
+        "coverage amount report",
+        "what is total sum insured",
+        "sum insured by category",
+        "total insured value",
+        "highest sum insured policy",
+        "sum insured report for vehicle",
+        "cattle insurance total sum insured",
+        "moththa sum insured report",
+        "sum insured stats",
+        "portfolio sum insured analysis",
+        "total coverage value summary",
+        "show sum insured breakdown",
+        "calculate total sum insured",
+        "sum insured distribution"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "PartyPolicies",
+      "description": "Search and display policies associated with a customer, party, or client name",
+      "examples": [
+        "policies for party Karthik",
+        "find policies for customer Ramesh",
+        "client Suresh insurance details",
+        "show policies owned by Kumar",
+        "party lookup for Anitha",
+        "all policies of Priya",
+        "customer Murugan policy list",
+        "find client Rajesh policies",
+        "party name Mani insurance report",
+        "policies under party John",
+        "search customer Balaji policies",
+        "how many policies does party Ravi have",
+        "insurance for party Vijay",
+        "list policies for client Lakshmi",
+        "party report for Govind",
+        "customer policies for Selvam"
+      ],
+      "entities_expected": [
+        "person"
+      ]
+    },
+    {
+      "name": "AssetSummary",
+      "description": "Summary of insured assets including vehicles, properties, buildings, machinery",
+      "examples": [
+        "asset summary",
+        "list all insured assets",
+        "asset overview report",
+        "what assets are covered under insurance",
+        "property and vehicle asset summary",
+        "total assets insured",
+        "asset report for protect",
+        "asset details summary",
+        "solthu summary kudu",
+        "show insured asset breakdown",
+        "machinery and building asset count",
+        "view all registered assets",
+        "asset insurance status",
+        "insured asset valuation",
+        "display asset summary",
+        "summary of client assets"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "MemoSummary",
+      "description": "Summary of memos, notes, and internal policy reminders",
+      "examples": [
+        "memo summary",
+        "show pending memos",
+        "list insurance memos",
+        "memo report for policies",
+        "recent memo entries",
+        "memos created this month",
+        "policy memo summary",
+        "view memo alerts",
+        "memo status list",
+        "important policy memos",
+        "memo summary report",
+        "fetch all active memos",
+        "memos associated with clients",
+        "internal notes and memo summary",
+        "display memo overview",
+        "find memo for policy"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "HowToAddPolicy",
+      "description": "Instructions and workflow guidance on how to create or add a new policy",
+      "examples": [
+        "how to add policy",
+        "how can i add a new policy",
+        "steps to create policy",
+        "how to register new insurance",
+        "policy epdi add panradhu",
+        "procedure to add policy entry",
+        "guide me to add policy",
+        "where do i click to create policy",
+        "how to insert new policy",
+        "add policy instructions",
+        "steps for new policy enrollment",
+        "explain how to add policy",
+        "new policy creation help",
+        "how do i add vehicle policy",
+        "how to register cattle policy",
+        "tell me how to add policy"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "HowToEditPolicy",
+      "description": "Instructions and guidance on modifying or updating an existing policy",
+      "examples": [
+        "how to edit policy",
+        "how can i update policy details",
+        "modify policy information steps",
+        "policy epdi edit panradhu",
+        "how to change vehicle number in policy",
+        "steps to update insurance record",
+        "how to edit customer name in policy",
+        "can i edit existing policy",
+        "guide to edit policy",
+        "where to update policy terms",
+        "how to fix mistake in policy",
+        "procedure to update policy",
+        "policy edit instructions",
+        "how to correct policy entry",
+        "editing policy guidelines",
+        "how do i change policy status"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "HowToRenewPolicy",
+      "description": "Instructions and workflow guidance on renewing an expired or expiring policy",
+      "examples": [
+        "how to renew policy",
+        "how can i renew my insurance",
+        "steps for policy renewal",
+        "policy epdi renew panradhu",
+        "how to extend policy validity",
+        "procedure to renew expired policy",
+        "renew policy guidelines",
+        "where to click for policy renewal",
+        "how to pay renewal premium",
+        "lapsed policy renew panra vazhi",
+        "renewal process instructions",
+        "guide to renew insurance policy",
+        "how to renew vehicle insurance",
+        "steps to renew cattle policy",
+        "can i renew policy online",
+        "renewal steps explained"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "HowToClaim",
+      "description": "Instructions on how to submit, process, or file an insurance claim",
+      "examples": [
+        "how to claim",
+        "how can i file an insurance claim",
+        "steps to make a claim",
+        "claim epdi apply panradhu",
+        "procedure for claim settlement",
+        "claim filing instructions",
+        "how to claim vehicle accident insurance",
+        "documents needed for cattle claim",
+        "guide to submit claim",
+        "how to register a claim",
+        "steps to report accident claim",
+        "hospitalization claim procedure",
+        "how does claim process work",
+        "where to submit claim form",
+        "insurance claim guidelines",
+        "how to get claim refund"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "HowToReports",
+      "description": "Guidance on how to generate, view, export, and download insurance reports",
+      "examples": [
+        "how to reports",
+        "how can i download reports",
+        "how to generate policy reports",
+        "reports epdi download panradhu",
+        "where can i view reports",
+        "steps to export insurance report",
+        "how to get excel report of policies",
+        "guide to access reporting section",
+        "how to view premium reports",
+        "instructions for generating reports",
+        "can i export pdf report",
+        "where is reporting dashboard",
+        "how to filter and print reports",
+        "steps to extract policy report",
+        "how do i create custom report",
+        "reporting feature help"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "ProtectDataCheck",
+      "description": "Direct inquiry, verification, or status inspection of Protect insurance records and data",
+      "examples": [
+        "insurance policy details",
+        "protect data check",
+        "check protect insurance records",
+        "verify policy information",
+        "inspect protect system data",
+        "protect portal data query",
+        "check insurance details",
+        "protect policy record inspection",
+        "verify insurance status in protect",
+        "check protect database record",
+        "protect data verification",
+        "examine protect policy entry",
+        "look up protect insurance",
+        "data check for policy records",
+        "query protect data",
+        "check protect data"
+      ],
+      "entities_expected": []
+    }
+  ]
+}

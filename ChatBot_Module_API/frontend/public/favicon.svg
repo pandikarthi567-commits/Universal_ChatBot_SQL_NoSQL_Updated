@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#090d16"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="url(#bgGrad)" stroke-width="2" fill="#0f172a" fill-opacity="0.8"/>
+  
+  <!-- Antenna -->
+  <line x1="32" y1="12" x2="32" y2="18" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="11" r="3.5" fill="#38bdf8"/>
+  
+  <!-- Robot Head -->
+  <rect x="15" y="18" width="34" height="26" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+  
+  <!-- Eyes -->
+  <circle cx="26" cy="29" r="4" fill="#38bdf8"/>
+  <circle cx="26" cy="29" r="1.5" fill="#ffffff"/>
+  <circle cx="38" cy="29" r="4" fill="#38bdf8"/>
+  <circle cx="38" cy="29" r="1.5" fill="#ffffff"/>
+  
+  <!-- Smile / Voice Grid -->
+  <rect x="26" y="37" width="12" height="2.5" rx="1.25" fill="#10b981"/>
+  
+  <!-- Neck & Shoulder hints -->
+  <path d="M22 51C22 47 26 45 32 45C38 45 42 47 42 51" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

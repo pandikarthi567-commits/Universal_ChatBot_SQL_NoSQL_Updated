@@ -1,0 +1,9 @@
+import { useState } from 'react';
+import { apiRequest } from '../api/httpClient';
+export function UniversalSourceEditor({project}) {
+ const [resources,setResources]=useState(JSON.stringify(project.metadata?.universal?.resources||[],null,2));
+ const [paths,setPaths]=useState((project.metadata?.universal?.website_paths||[]).join('\n'));
+ const [message,setMessage]=useState('');const [busy,setBusy]=useState(false);
+ async function save(){setBusy(true);setMessage('');try{await apiRequest(`/api/projects/${project.id}/universal`,{method:'PUT',body:{resources:JSON.parse(resources),website_paths:paths.split('\n').map(x=>x.trim()).filter(Boolean)}});setMessage('Configuration saved.');}catch(e){setMessage(e.message);}finally{setBusy(false);}}
+ return <section className="rounded-xl border border-cyan-500/30 bg-charcoal-950 p-4 space-y-3"><h3 className="font-semibold text-cyan-300">Universal data sources</h3><p>Approve only fields that every authorized chatbot user may read. Configure database connection in Edit Project first.</p><label className="block">Resource definitions (JSON)</label><textarea className="w-full rounded bg-charcoal-900 p-3 font-mono text-xs" rows={12} value={resources} onChange={e=>setResources(e.target.value)}/><p className="break-all">Example: {JSON.stringify([{name:'products',source:'database',table:'products',fields:['name','qty'],filters:['qty'],field_types:{qty:'number'},aliases:['items']}])}</p><label className="block">Website paths (one per line)</label><textarea className="w-full rounded bg-charcoal-900 p-3" rows={3} placeholder={'/about\n/help'} value={paths} onChange={e=>setPaths(e.target.value)}/><button type="button" disabled={busy} onClick={save} className="rounded-lg bg-cyan-700 px-4 py-2 text-white">{busy?'Saving…':'Save sources'}</button><p role="status">{message}</p></section>;
+}
