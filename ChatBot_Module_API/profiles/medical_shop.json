@@ -1,0 +1,81 @@
+{
+  "project_code": "MEDICAL_SHOP",
+  "modules": [],
+  "language_hints": [
+    "en",
+    "ta-Latn",
+    "ta"
+  ],
+  "intents": [
+    {
+      "name": "Greeting",
+      "description": "Small talk greeting",
+      "examples": [
+        "hi",
+        "hello",
+        "hey",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "vanakkam",
+        "hello there"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "MedicalShopDataCheck",
+      "description": "Check data, status, and execute operations for Medical_Shop",
+      "examples": [
+        "show medical_shop data",
+        "check medical_shop status",
+        "show records for medical_shop",
+        "fetch medical_shop details"
+      ],
+      "entities_expected": []
+    }
+  ],
+  "entity_types": [
+    {
+      "name": "ItemName",
+      "kind": "gazetteer",
+      "priority": 1,
+      "values": [],
+      "regex": null,
+      "normalize_rule": [],
+      "builtin": null
+    },
+    {
+      "name": "Quantity",
+      "kind": "pattern",
+      "priority": 2,
+      "values": [],
+      "regex": "\\b(?:one|two|three|four|five|six|seven|eight|nine|ten|[0-9]{1,4})\\b",
+      "normalize_rule": [],
+      "builtin": null
+    },
+    {
+      "name": "EntityId",
+      "kind": "pattern",
+      "priority": 3,
+      "values": [],
+      "regex": "\\b[A-Z]{2,4}[-_]?[0-9]{3,10}\\b",
+      "normalize_rule": [],
+      "builtin": null
+    }
+  ],
+  "normalization_lexicon": {
+    "price": "price",
+    "vilai": "price",
+    "rate": "price",
+    "cost": "price",
+    "irukka": "available",
+    "available": "available",
+    "stock": "stock",
+    "mudinjathu": "expired",
+    "theerthathu": "expired"
+  },
+  "thresholds": {
+    "intent": 0.4,
+    "entity_fuzzy": 0.85
+  }
+}

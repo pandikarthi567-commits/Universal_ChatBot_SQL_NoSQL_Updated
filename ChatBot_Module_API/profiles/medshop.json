@@ -1,0 +1,80 @@
+{
+  "project_code": "MEDSHOP",
+  "modules": [],
+  "language_hints": [
+    "en",
+    "ta-Latn",
+    "ta"
+  ],
+  "intents": [
+    {
+      "name": "Greeting",
+      "description": "Small talk greeting",
+      "examples": [
+        "hi",
+        "hello",
+        "hey",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "vanakkam",
+        "hello there"
+      ],
+      "entities_expected": []
+    },
+    {
+      "name": "MEDSHOP_HealthCheck",
+      "description": "Discovered intent for GET /health",
+      "examples": [
+        "check health",
+        "is service online",
+        "api status"
+      ],
+      "entities_expected": []
+    }
+  ],
+  "entity_types": [
+    {
+      "name": "ItemName",
+      "kind": "gazetteer",
+      "priority": 1,
+      "values": [],
+      "regex": null,
+      "normalize_rule": [],
+      "builtin": null
+    },
+    {
+      "name": "Quantity",
+      "kind": "pattern",
+      "priority": 2,
+      "values": [],
+      "regex": "\\b(?:one|two|three|four|five|six|seven|eight|nine|ten|[0-9]{1,4})\\b",
+      "normalize_rule": [],
+      "builtin": null
+    },
+    {
+      "name": "EntityId",
+      "kind": "pattern",
+      "priority": 3,
+      "values": [],
+      "regex": "\\b[A-Z]{2,4}[-_]?[0-9]{3,10}\\b",
+      "normalize_rule": [],
+      "builtin": null
+    }
+  ],
+  "normalization_lexicon": {
+    "price": "price",
+    "vilai": "price",
+    "rate": "price",
+    "cost": "price",
+    "irukka": "available",
+    "available": "available",
+    "stock": "stock",
+    "mudinjathu": "expired",
+    "theerthathu": "expired"
+  },
+  "thresholds": {
+    "intent": 0.4,
+    "entity_fuzzy": 0.85
+  }
+}

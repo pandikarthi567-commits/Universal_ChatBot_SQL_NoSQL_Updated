@@ -333,7 +333,7 @@ router.get("/:id/analysis", requireAdmin, async (req, res) => {
   try {
     const analysis = await ProjectAnalysis.findOne({ project_id: Number(req.params.id) });
     if (!analysis) {
-      return res.status(404).json({ detail: "No static analysis record found for this project." });
+      return res.json(null);
     }
     res.json(analysis);
   } catch (err) {
